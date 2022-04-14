@@ -10,18 +10,44 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <StatusBar style="dark" />
-      <Stack.Navigator>
-        <Stack.Screen name="Meals Categories" component={Categoriesscreen} />
-        <Stack.Screen name="Meals Overview" component={MealsOverviewScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <>
+      <StatusBar style="light" />
+      <NavigationContainer>
+        <Stack.Navigator 
+        screenOptions={
+          {
+            headerStyle: { backgroundColor: '#351401' },
+              headerTintColor: 'white',
+              headerTitleStyle: { fontWeight: 'bold' },
+              cardStyle: { backgroundColor: '#612401' }
+          }
+        }
+        >
+          <Stack.Screen
+            name="MealsCategories"
+            component={Categoriesscreen}
+            options={{
+              title: 'All Categories',
+            }}
+          />
+          <Stack.Screen
+            name="MealsOverview"
+            component={MealsOverviewScreen}
+            options={{
+              title: 'Meals',
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   rootView: {
     paddingTop: 30,
+  },
+  contentBg: {
+    backgroundColor: '#000',
   },
 });

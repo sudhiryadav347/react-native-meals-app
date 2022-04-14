@@ -6,7 +6,7 @@ const Categoriesscreen = ({ navigation }) => {
   
   function renderCategoryItem({ item }) {
     const pressHandler = () => {
-      return navigation.navigate('Meals Overview', {
+      return navigation.navigate('MealsOverview', {
         categoryId: item.id,
       });
     };
