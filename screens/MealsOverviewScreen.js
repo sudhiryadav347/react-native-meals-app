@@ -9,8 +9,18 @@ export default function MealsOverviewScreen({ route }) {
     return mealItem.categoryIds.indexOf(catId) >= 0;
   });
 
+
+
   const renderMealItems = ({ item }) => {
-    return <MealItem title={item.title} />;
+    const mealItemProps = {
+      title: item.title,
+      imageUrl: item.imageUrl,
+      duration: item.duration, 
+      complexity: item.complexity, 
+      affordability: item.affordability
+    }
+    
+    return <MealItem {...mealItemProps}/>;
   };
 
   return (
