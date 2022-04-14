@@ -1,15 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import Categoriesscreen from './screens/CategoriesScreen';
 
 export default function App() {
   return (
-   <Categoriesscreen />
+    <SafeAreaView style={styles.rootView}>
+      <StatusBar style="light" />
+      <Categoriesscreen />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    
+  rootView: {
+    paddingTop: 30,
   },
 });
