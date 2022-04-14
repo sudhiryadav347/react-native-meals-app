@@ -2,15 +2,15 @@ import { View, StyleSheet, FlatList, StatusBar } from 'react-native';
 import CategoryGridTile from '../components/CategoryGridTile';
 import { CATEGORIES } from '../data/dummy-data';
 
-
 const Categoriesscreen = ({ navigation }) => {
-
+  
   function renderCategoryItem({ item }) {
-  
-    const pressHandler = () => { 
-      return navigation.navigate('Meals Overview');
-     }
-  
+    const pressHandler = () => {
+      return navigation.navigate('Meals Overview', {
+        categoryId: item.id,
+      });
+    };
+
     return (
       <CategoryGridTile
         title={item.title}
@@ -19,7 +19,7 @@ const Categoriesscreen = ({ navigation }) => {
       />
     );
   }
-  
+
   return (
     <View>
       <FlatList
