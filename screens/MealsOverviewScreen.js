@@ -29,7 +29,26 @@ export default function MealsOverviewScreen({ route, navigation }) {
       affordability: item.affordability,
     };
 
-    return <MealItem {...mealItemProps} />;
+    const mealDetailsProps = {
+      id: item.id,
+      categoryIds: item.categoryIds,
+      title: item.title,
+      affordability: item.affordability,
+      complexity: item.complexity,
+      imageUrl: item.imageUrl,
+      duration: item.duration,
+      ingredients: item.ingredients,
+      steps: item.steps,
+      isGlutenFree: item.isGlutenFree,
+      isVegan: item.isVegan,
+      isVegetarian: item.isVegetarian,
+      isLactoseFree: item.isLactoseFree,
+    };
+
+    const onPressHandler = () =>
+      navigation.navigate('MealDetails', { ...mealDetailsProps });
+
+    return <MealItem {...mealItemProps} onPress={onPressHandler} />;
   };
 
   return (
