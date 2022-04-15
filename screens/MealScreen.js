@@ -1,6 +1,6 @@
 import { useLayoutEffect } from 'react';
-import { View, Text } from 'react-native';
-import React from 'react';
+import { View, Text, Image } from 'react-native';
+import MealDetails from '../components/MealDetails';
 
 const MealScreen = ({ navigation, route }) => {
   const mealParams = route.params.mealData;
@@ -29,8 +29,24 @@ const MealScreen = ({ navigation, route }) => {
 
   return (
     <View>
+      <Image source={{ uri: imageUrl }} />
       <Text>{title}</Text>
+      <MealDetails
+        duration={duration}
+        affordability={affordability}
+        complexity={complexity}
+      />
+      <Text>Ingredients:</Text>
+      {ingredients.map((ingredient) => {
+        return <Text key={ingredient}>{ingredient}</Text>;
+      })}
+      <Text>Steps:</Text>
+      {steps.map((step) => {
+        return <Text key={step}>{step}</Text>;
+      })}
+      <View></View>
       <Text>{isVegetarian ? 'True' : 'False'}</Text>
+      <Text></Text>
     </View>
   );
 };
