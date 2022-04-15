@@ -21,13 +21,13 @@ export default function MealsOverviewScreen({ route, navigation }) {
   }, [catId, navigation]);
 
   const renderMealItems = ({ item }) => {
-    const mealItemProps = {
-      title: item.title,
-      imageUrl: item.imageUrl,
-      duration: item.duration,
-      complexity: item.complexity,
-      affordability: item.affordability,
-    };
+    // const mealItemProps = {
+    //   title: item.title,
+    //   imageUrl: item.imageUrl,
+    //   duration: item.duration,
+    //   complexity: item.complexity,
+    //   affordability: item.affordability,
+    // };
 
     const mealDetailsProps = {
       id: item.id,
@@ -45,10 +45,7 @@ export default function MealsOverviewScreen({ route, navigation }) {
       isLactoseFree: item.isLactoseFree,
     };
 
-    const onPressHandler = () =>
-      navigation.navigate('MealDetails', { ...mealDetailsProps });
-
-    return <MealItem {...mealItemProps} onPress={onPressHandler} />;
+    return <MealItem {...mealDetailsProps} />;
   };
 
   return (

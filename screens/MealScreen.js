@@ -3,8 +3,7 @@ import { View, Text } from 'react-native';
 import React from 'react';
 
 const MealScreen = ({ navigation, route }) => {
-  
-  const mealParams = route.params;
+  const mealParams = route.params.mealData;
   const {
     id,
     categoryIds,
