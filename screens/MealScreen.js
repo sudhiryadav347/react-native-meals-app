@@ -10,6 +10,7 @@ import {
 import MealDetails from '../components/MealDetails';
 import Subtitle from '../components/MealDetail/Subtitle';
 import List from '../components/MealDetail/List';
+import IconButton from '../components/ui/IconButton';
 
 const MealScreen = ({ navigation, route }) => {
   const mealParams = route.params.mealData;
@@ -38,7 +39,7 @@ const MealScreen = ({ navigation, route }) => {
     navigation.setOptions({
       title: title,
       headerRight: () => {
-        return <Button title="Favorite" onPress={headerButtonPressHandler} />;
+        return <IconButton icon="star" color="white" onPress={headerButtonPressHandler} />;
       },
     });
   }, [title, navigation, headerButtonPressHandler]);
