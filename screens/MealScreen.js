@@ -1,5 +1,12 @@
 import { useLayoutEffect } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ScrollView,
+  Button,
+} from 'react-native';
 import MealDetails from '../components/MealDetails';
 import Subtitle from '../components/MealDetail/Subtitle';
 import List from '../components/MealDetail/List';
@@ -22,12 +29,19 @@ const MealScreen = ({ navigation, route }) => {
     isLactoseFree,
   } = mealParams;
 
+  const headerButtonPressHandler = () => {
+    console.log('pressed');
+  };
+
   useLayoutEffect(() => {
     const { title } = mealParams;
     navigation.setOptions({
       title: title,
+      headerRight: () => {
+        return <Button title="Favorite" onPress={headerButtonPressHandler} />;
+      },
     });
-  }, [title, navigation]);
+  }, [title, navigation, headerButtonPressHandler]);
 
   return (
     <ScrollView style={styles.rootContainer}>
