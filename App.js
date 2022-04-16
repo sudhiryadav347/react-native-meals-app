@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, Button } from 'react-native';
 import Categoriesscreen from './screens/CategoriesScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -36,14 +36,15 @@ export default function App() {
               title: 'Meals',
             }}
           />
-          <Stack.Screen 
+          <Stack.Screen
             name="MealDetails"
             component={MealScreen}
-            options={
-              {
-                title: 'Meal Details',
-              }
-            }
+            options={{
+              title: 'Meal Details',
+              headerRight: () => {
+                return <Button title="Favorite" />;
+              },
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>
