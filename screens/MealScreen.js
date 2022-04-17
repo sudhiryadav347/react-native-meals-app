@@ -37,9 +37,16 @@ const MealScreen = ({ navigation, route }) => {
   useLayoutEffect(() => {
     const { title } = mealParams;
     navigation.setOptions({
-      title: title,
+      // title: title,
+      // title: 'About the Meal',
       headerRight: () => {
-        return <IconButton icon="star" color="white" onPress={headerButtonPressHandler} />;
+        return (
+          <IconButton
+            icon="star"
+            color="white"
+            onPress={headerButtonPressHandler}
+          />
+        );
       },
     });
   }, [title, navigation, headerButtonPressHandler]);
@@ -81,10 +88,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     margin: 18,
     textAlign: 'center',
-    color: 'white',
+    color: '#403115',
   },
   detailText: {
-    color: 'white',
+    color: '#403115',
   },
   listContainer: {
     width: '80%',

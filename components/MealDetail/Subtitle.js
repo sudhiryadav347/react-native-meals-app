@@ -10,14 +10,14 @@ export default function Subtitle({ children }) {
 
 const styles = StyleSheet.create({
   subtitle: {
-    color: '#e2b497',
+    color: '#403115',
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
     paddingTop: 20,
   },
   subtitleContainer: {
-    borderBottomColor: '#e2b497',
+    borderBottomColor: '#403115',
     borderBottomWidth: 2,
     paddingBottom: 18,
     marginHorizontal: 16,
