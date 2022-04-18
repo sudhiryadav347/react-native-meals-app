@@ -1,19 +1,16 @@
-import { useLayoutEffect } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  ScrollView,
-  Button,
-} from 'react-native';
+import { useLayoutEffect, useContext } from 'react';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import MealDetails from '../components/MealDetails';
 import Subtitle from '../components/MealDetail/Subtitle';
 import List from '../components/MealDetail/List';
 import IconButton from '../components/ui/IconButton';
+import { FavoritesContext } from '../store/context/favorites-context';
 
 const MealScreen = ({ navigation, route }) => {
+  const favoriteMealsCtx = useContext(FavoritesContext);
+
   const mealParams = route.params.mealData;
+
   const {
     id,
     categoryIds,
@@ -30,8 +27,16 @@ const MealScreen = ({ navigation, route }) => {
     isLactoseFree,
   } = mealParams;
 
-  const headerButtonPressHandler = () => {
-    console.log('pressed');
+  const mealIsFavorite = favoriteMealsCtx.ids.includes(id);
+
+  const changeFavoriteStatusHandler = () => {
+    if (mealIsFavorite) {
+      favoriteMealsCtx.removeFavorite(id);
+      console.log('meal is favorite');
+    } else {
+      favoriteMealsCtx.addFavorite(id);
+      console.log('meal is not favorite');
+    }
   };
 
   useLayoutEffect(() => {
@@ -42,14 +47,14 @@ const MealScreen = ({ navigation, route }) => {
       headerRight: () => {
         return (
           <IconButton
-            icon="star"
+            icon={mealIsFavorite ? 'star' : 'star-outline'}
             color="white"
-            onPress={headerButtonPressHandler}
+            onPress={changeFavoriteStatusHandler}
           />
         );
       },
     });
-  }, [title, navigation, headerButtonPressHandler]);
+  }, [title, navigation, changeFavoriteStatusHandler]);
 
   return (
     <ScrollView style={styles.rootContainer}>
