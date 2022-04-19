@@ -1,19 +1,20 @@
-import { useLayoutEffect } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  ScrollView,
-  Button,
-} from 'react-native';
+import { useLayoutEffect, useContext } from 'react';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import MealDetails from '../components/MealDetails';
 import Subtitle from '../components/MealDetail/Subtitle';
 import List from '../components/MealDetail/List';
 import IconButton from '../components/ui/IconButton';
+// import { FavoritesContext } from '../store/context/favorites-context';
+import { addFavorite, removeFavorite } from '../store/redux/favorites'
 
 const MealScreen = ({ navigation, route }) => {
+  // const favoriteMealsCtx = useContext(FavoritesContext);
+  const favoriteMealIds = useSelector((state)=>state.favoriteMeals.ids);
+  const dispatch = useDispatch();
+
   const mealParams = route.params.mealData;
+
   const {
     id,
     categoryIds,
@@ -30,8 +31,19 @@ const MealScreen = ({ navigation, route }) => {
     isLactoseFree,
   } = mealParams;
 
-  const headerButtonPressHandler = () => {
-    console.log('pressed');
+  // const mealIsFavorite = favoriteMealsCtx.ids.includes(id);
+    const mealIsFavorite = favoriteMealIds.includes(id);
+
+  const changeFavoriteStatusHandler = () => {
+    if (mealIsFavorite) {
+      // favoriteMealsCtx.removeFavorite(id);
+      dispatch(removeFavorite({ id: id }));
+      console.log('meal is favorite');
+    } else {
+      // favoriteMealsCtx.addFavorite(id);
+      dispatch(addFavorite({ id: id }));
+      console.log('meal is not favorite');
+    }
   };
 
   useLayoutEffect(() => {
@@ -42,14 +54,14 @@ const MealScreen = ({ navigation, route }) => {
       headerRight: () => {
         return (
           <IconButton
-            icon="star"
+            icon={mealIsFavorite ? 'star' : 'star-outline'}
             color="white"
-            onPress={headerButtonPressHandler}
+            onPress={changeFavoriteStatusHandler}
           />
         );
       },
     });
-  }, [title, navigation, headerButtonPressHandler]);
+  }, [title, navigation, changeFavoriteStatusHandler]);
 
   return (
     <ScrollView style={styles.rootContainer}>
