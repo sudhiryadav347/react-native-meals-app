@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
-import MealDetails from './MealDetails';
+import MealDetails from '../MealDetails';
 
-const MealItem = (item) => {
+const MealItem = ({ item }) => {
   const navigation = useNavigation();
   const onPressHandler = () =>
     navigation.navigate('MealDetails', { mealData: item });
